@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our HPV Campaign Story</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Our Campaign Story: Beyong Protection</h1>
+        <p class="subtitle">Protecting Your Future, One Choice at a Time</p>
+    </header>
+
+    <section class="campaign-info">
+        <h2>About Beyond Protection</h2>
+        <p>Some things you can't see coming. HPV vaccination can help. HPV is more common than you think—and protection goes beyond what you can see. While barrier methods like condoms help, they don’t cover everything. The good news? You have the power to take control of your health with a simple, effective choice: HPV vaccination.</p>
+        <h2>Why It Matters</h2>
+        <p>Every day, people make decisions to protect themselves and their future. But what if you didn’t have all the facts? HPV spreads through skin-to-skin contact, and most people get it at some point. Some infections go away on their own, but others can lead to serious health risks, like certain cancers. The vaccine is your best defense—and getting it is easier than you think.</p>
+        <h2>Make the Power Move</h2>
+        <p>Think of it as leveling up in real life. The HPV vaccine strengthens your defenses, giving you a key advantage in your health journey. Whether you're making this decision for yourself or helping someone you care about, know this: choosing protection is always a win.</p>
+    </section>
+
+    <section class="gallery">
+        <h2>Campaign Posters</h2>
+        <div class="gallery-grid">
+            <article class="item">
+                <figure>
+                    <img src="condom.png" alt="Condom is Not Enough">
+                    <figcaption>Condom is Not Enough</figcaption>
+                </figure>
+            </article>
+            <article class="item">
+                <figure>
+                    <img src="characters.png" alt="Choose Your Character">
+                    <figcaption>Choose Your Character</figcaption>
+                </figure>
+            </article>
+            <article class="item">
+                <figure>
+                    <img src="poster3.jpg" alt="Scan to Protect">
+                    <figcaption>Scan to Protect Your Future</figcaption>
+                </figure>
+            </article>
+        </div>
+    </section>
+
+    <section class="video-gallery">
+        <h2>Campaign Videos</h2>
+        <div class="video-grid">
+            <article class="video">
+                <figure>
+                    <a class="fancybox fancybox.iframe" href="//www.youtube.com/embed/VIDEO_ID_1">
+                        <img class="videoThumb" src="//i1.ytimg.com/vi/VIDEO_ID_1/mqdefault.jpg">
+                    </a>
+                </figure>
+                <h3 class="videoTitle">We Listen, We Don't Judge</h3>
+            </article>
+            <article class="video">
+                <figure>
+                    <a class="fancybox fancybox.iframe" href="//www.youtube.com/embed/VIDEO_ID_2">
+                        <img class="videoThumb" src="//i1.ytimg.com/vi/VIDEO_ID_2/mqdefault.jpg">
+                    </a>
+                </figure>
+                <h3 class="videoTitle">HPV Facts: What You Need to Know</h3>
+            </article>
+        </div>
+    </section>
+
+    <div class="nav-buttons">
+        <button onclick="window.location.href='index.html'">Try the Character Selection</button>
+        <button onclick="window.location.href='registration.html'">Register for Vaccination</button>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.fancybox').fancybox({
+                padding: 0,
+                maxWidth: '100%',
+                maxHeight: '100%',
+                width: 560,
+                height: 315,
+                autoSize: true,
+                closeClick: true,
+                openEffect: 'elastic',
+                closeEffect: 'elastic'
+            });
+        });
+    </script>
+</body>
+</html>

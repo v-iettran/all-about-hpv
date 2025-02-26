@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HPV Vaccination Registration</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #4CAF50, #2196F3);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .title {
+            margin-top: 40px;
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .registration-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 40px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.02);
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(76, 175, 80, 0.3);
+            border-radius: 5px;
+        }
+
+        .story-btn {
+            background-color: #FFD700;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 80%;
+            margin: 25px auto 10px;
+        }
+
+        .story-btn:hover {
+            background-color: #FFC107;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        
+        .back-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="title">HPV Vaccination Registration</div>
+    
+    <div class="registration-container">
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" min="16" max="24" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="non-binary">Non-binary</option>
+                    <option value="other">Other</option>
+                    <option value="prefer-not-to-say">Prefer not to say</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="location">Preferred Vaccination Location</label>
+                <select id="location" name="location" required>
+                    <option value="">Select location</option>
+                    <option value="campus-health">Campus Health Center</option>
+                    <option value="community-clinic">Community Clinic</option>
+                    <option value="hospital">Local Hospital</option>
+                    <option value="pharmacy">Pharmacy</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="date">Preferred Date</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="questions">Questions or Concerns</label>
+                <textarea id="questions" name="questions" rows="4"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Registration</button>
+        </form>
+        
+        <div class="success-message" id="success-message">
+            <h3>Registration Successful!</h3>
+            <p>Thank you for registering for HPV vaccination. We'll contact you shortly to confirm your appointment. 
+                Meanwhile, explore our Instagram at @all.abouthpv.</p>
+            
+            <!-- New button to navigate to Our Story page -->
+            <button class="story-btn" onclick="goToStory()">Explore Our Campaign</button>
+        </div>
+        
+        <button class="back-btn" onclick="goBack()">Back to Character Selection</button>
+    </div>
+    
+    <script>
+        document.getElementById('registration-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Hide the form
+            this.style.display = 'none';
+            
+            // Show success message
+            document.getElementById('success-message').style.display = 'block';
+            
+            // In a real application, you would send the form data to a server here
+            console.log('Form submitted');
+        });
+        
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        function goToStory() {
+            window.location.href = 'our-story.html';
+        }   
+
+    </script>
+</body>
+</html>

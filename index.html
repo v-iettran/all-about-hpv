@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Character - HPV Campaign</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background-color: #111;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+        .character {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 20px;
+            position: relative;
+        }
+        .character:hover {
+            flex: 1.2;
+        }
+        .vaccinated {
+            background: linear-gradient(135deg, #4CAF50, #2196F3);
+            color: white;
+        }
+        .unvaccinated {
+            background: linear-gradient(135deg, #FF9800, #f44336);
+            color: white;
+        }
+        .character-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 100%;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        .character-stats {
+            text-align: left;
+            margin-bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 300px;
+        }
+        .stat {
+            margin: 15px 0;
+            font-size: 16px;
+        }
+        .stat-name {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .stat-bar-container {
+            width: 100%;
+            height: 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .stat-bar {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+        .vaccinated .stat-bar {
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+        }
+        .unvaccinated .stat-bar {
+            background: linear-gradient(90deg, #f44336, #FF9800);
+        }
+        .character-name {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+        }
+        .modal-content {
+            background-color: #333;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 500px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+        .modal h2 {
+            margin-top: 0;
+            color: #FFD700;
+        }
+        .register-btn {
+            padding: 15px 25px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px auto;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .register-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .close-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+        .title {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">CHOOSE YOUR CHARACTER WISELY!</div>
+    
+    <div class="container">
+        <div class="character vaccinated" onclick="showModal('vaccinated')">
+            <div class="character-name">Vaccinated</div>
+            <div class="character-image" style="background-image: url('vaccinated.png'); background-size: cover !important; background-position: center; background-repeat: no-repeat; font-size: 0;"></div>
+            <div class="character-stats">
+                <div class="stat">
+                    <div class="stat-name">HPV Immunity</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-name">Cancer Protection</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-name">Relationship Confidence</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-name">Medical Cost</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" style="width: 15%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="character unvaccinated" onclick="showModal('unvaccinated')">
+            <div class="character-name">Unvaccinated</div>
+            <div class="character-image" style="background-image: url('unvaccinated.png'); background-size: cover !important; background-position: center; background-repeat: no-repeat; font-size: 0;"></div>
+            <div class="character-stats">
+                <div class="stat">
+                    <div class="stat-name">HPV Immunity</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" style="width: 10%"></div>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-name">Cancer Protection</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" style="width: 15%"></div>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-name">Relationship Confidence</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" style="width: 25%"></div>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-name">Medical Cost</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar" style="width: 90%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <h2 id="modal-title">Your Choice</h2>
+            <p id="modal-message">Scan to protect your future</p>
+            <button class="register-btn" onclick="goToRegistration()">Register for HPV Vaccination</button>
+            <button class="close-btn" onclick="closeModal()">Return to Selection</button>
+        </div>
+    </div>
+    
+    <script>
+        // Animate the stat bars when the page loads
+        window.onload = function() {
+            const statBars = document.querySelectorAll('.stat-bar');
+            statBars.forEach(bar => {
+                const finalWidth = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = finalWidth;
+                }, 300);
+            });
+        };
+        
+        function showModal(character) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalMessage = document.getElementById('modal-message');
+            
+            if (character === 'vaccinated') {
+                modalTitle.textContent = 'Great Choice!';
+                modalMessage.textContent = 'Learn how to protect your future and get vaccinated today!';
+            } else {
+                modalTitle.textContent = 'Want to Level Up?';
+                modalMessage.textContent = 'Learn how to get HPV protection and upgrade your character.';
+            }
+            
+            modal.style.display = 'flex';
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+        function goToRegistration() {
+            // Navigate to your registration page
+            window.location.href = "registration.html";
+        }
+    </script>
+</body>
+</html>
